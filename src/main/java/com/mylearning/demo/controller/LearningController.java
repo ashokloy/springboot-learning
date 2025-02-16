@@ -2,6 +2,7 @@ package com.mylearning.demo.controller;
 
 import com.mylearning.demo.repo.Employee;
 import com.mylearning.demo.repo.EmployeeRepo;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,13 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/learn")
+@RequiredArgsConstructor
 @Slf4j
 public class LearningController {
-    @Autowired
-    EmployeeRepo employeeRepo;
 
+    private final EmployeeRepo employeeRepo;
     @Value("${test.value}")
     String value;
+
     @GetMapping("/test")
     public ResponseEntity<String> getLearning(@RequestParam String param){
         log.info("this is log {} param {} ", value, param);
